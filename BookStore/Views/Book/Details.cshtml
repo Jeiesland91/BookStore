@@ -1,0 +1,40 @@
+﻿@model Book
+@{
+    ViewBag.Title = "Book Details";
+}
+
+<h1>Book Details</h1>
+<div class="row">
+    <div class="col-sm-4">
+        <img src="~/images/@ViewBag.ImageFilename" 
+             alt="@Model.Title Image" 
+             class="img-responsive center-block"/>
+    </div>
+
+    <div class="col-sm-8">
+        <h2>@Model.Title</h2>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>Author:</td>
+                <td>@Model.AuthorName</td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>@Model.Category.Name</td>
+            </tr>
+            <tr>
+                <td>List Price:</td>
+                <td>@Model.Price.ToString("C")</td>
+            </tr>
+            <tr>
+                <td>Number Of Pages:</td>
+                <td>@Model.NumberOfPages</td>
+            </tr>
+            <tr>
+                <td>ISBN Number:</td>
+                <td>@Model.ISBN</td>
+            </tr>
+        </table>
+        
+    </div>
+</div>

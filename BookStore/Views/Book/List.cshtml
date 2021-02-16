@@ -1,0 +1,54 @@
+﻿@model List<Book>
+@{
+    ViewBag.Title = "Book List";
+}
+
+<h1>Book List</h1>
+<div class="row">
+    <div class="col-sm-2">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a asp-controller="Book" asp-action="List" asp-route-id="All"
+                   class="list-group-item
+                    @(ViewBag.SelectedCategoryName == "All" ? "active" : "")">
+                    All
+                </a>
+            </li>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <li class="list-group-item">
+                    <a asp-controller="Book" asp-action="List" asp-route-id="@c.Name"
+                       class="list-group-item
+                             @(ViewBag.SelectedCategoryName == c.Name ? "active" : "")">
+                        @c.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="col-sm-10">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author Name</th>
+                    <th>Price</th>
+                    <th>Number Of Pages</th>
+                    <th>ISBN Number</th>
+</thead>
+            <tbody>
+                @foreach (var Book in Model)
+                {
+                <tr>
+                    <td>@Book.Title</td>
+                    <td>@Book.AuthorName</td>
+                    <td>@Book.Price.ToString("C")</td>
+                    <td>@Book.NumberOfPages</td>
+                    <td>@Book.ISBN</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

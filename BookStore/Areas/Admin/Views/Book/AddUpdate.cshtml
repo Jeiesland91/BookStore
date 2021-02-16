@@ -1,0 +1,41 @@
+﻿<!-- this view is used for the Add action and the Update action -->
+@model BookStore.Models.Book
+@{
+    string title = ViewBag.Action + " Book";
+    ViewBag.Title = title;    // sets title to "Add Book" or "Update Book"
+}
+
+<h1>@ViewBag.Title</h1>
+
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId"
+                asp-items="@(new SelectList(ViewBag.Categories,
+                               "CategoryId", "Name",
+                               Model.CategoryId.ToString()))"
+                class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Code">Code</label>
+        <input asp-for="Code" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price">Price</label>
+        <input asp-for="Price" class="form-control">
+    </div>
+
+    <input type="hidden" asp-for="BookId" />
+
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-action="List" class="btn btn-primary">Cancel</a>
+</form>
